@@ -1,0 +1,47 @@
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.imgcontainer{
+	margin-top: 30px;
+	min-width: 200px;
+	min-height:200px;
+	max-width: 800px;
+	border-radius: 5px;
+	border:1px solid #bcbcbc;
+	padding:15px;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.25s;
+	margin-bottom: 50px;
+}
+.imgcontainer:before,
+.imgcontainer:after{
+	content:'';
+	position: absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+	background: #bcbcbc;
+	transition: all 0.25s;
+}
+.imgcontainer:before{
+	width:2px;
+	height:30px;
+}
+.imgcontainer:after{
+	width:30px;
+	height:2px;
+}
+.imgcontainer:hover{
+	border:1px solid #337ab7;
+}
+.imgcontainer:hover:before,
+.imgcontainer:hover::after{
+	background: #337ab7;
+}
+.imgcontainer>img{
+	width: 100%;
+}

@@ -18,7 +18,12 @@ app.use(static(
 	path.join( __dirname, staticPath)
 ))
 
-app.use(bodyParser());
+app.use(bodyParser({
+    formLimit:"5mb",
+    jsonLimit:"5mb",
+    textLimit:"5mb",
+    enableTypes: ['json', 'form', 'text']
+}));
 
 router.post('/upload',async(ctx,next)=>{
 	//传入base64

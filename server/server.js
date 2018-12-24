@@ -20,10 +20,6 @@ app.use(static(
 
 //bodyParser配置
 app.use(bodyParser({
-    formLimit:"5mb",
-    jsonLimit:"5mb",
-    textLimit:"5mb",
-    enableTypes: ['json', 'form', 'text']
 }));
 
 //接收前台发来的数据

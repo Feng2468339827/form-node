@@ -1,3 +1,12 @@
+/**
+ * @author  feng
+ * @version 1.2
+ */
+
+/**
+ * [createFileInput 创建input]
+ * @return {[type]} [description]
+ */
 function createFileInput(){
 	var fileInput = this.fileInput;
 	if(!fileInput){
@@ -11,12 +20,24 @@ function createFileInput(){
 	fileInput.click();
 	fileInput.onchange  = this.onchangeFileInput.bind(this);
 }
+
+/**
+ * [filename 上张上传图片的name]
+ * @type {String}
+ */
+//_this.filename;
+
+/**
+ * [onchangeFileInput 改变input状态]
+ * @return {[alert]} [上传状态]
+ */
 function onchangeFileInput(){
 	var reader = new FileReader(),
 		fileInput = this.fileInput;
 	reader.readAsDataURL(fileInput.files[0]);
 	//获得图片名
 	reader.name = fileInput.files[0].name;
+	var _this=this;
 	reader.onload=function(){
 		//正则判断
 		let filetype=/^data:image\/\w+;base64,/;
@@ -27,7 +48,8 @@ function onchangeFileInput(){
 			//上传图片的base64
 			axios.post('/upload',{
 				imgsrc:this.result,
-				name:this.name
+				name:this.name,
+				filename:_this.fileName
 			},{
 				//允许在上传过程中的做一些操作
 				onUploadProgress:function(e){
@@ -38,12 +60,16 @@ function onchangeFileInput(){
 				}
 			}).then((res)=>{
 				console.log(res)
+				//保存上次的文件名
+				_this.fileName=res.data
 				document.querySelector('.masklayer').classList.add('hidden');
-				if(res.data!=''){
-					alert('上传成功！')
-					document.querySelector('.pregress-container>span:first-child').innerHTML=0+'%'
-					document.querySelector('.progress').style.width=0+'%';
-				}
+				setTimeout(function(){
+					if(res.data!=''){
+						alert('上传成功！')
+						document.querySelector('.pregress-container>span:first-child').innerHTML=0+'%'
+						document.querySelector('.progress').style.width=0+'%';
+					}
+				},500)
 			})
 		}
 		else{

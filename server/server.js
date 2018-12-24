@@ -18,6 +18,7 @@ app.use(static(
 	path.join( __dirname, staticPath)
 ))
 
+//bodyParser配置
 app.use(bodyParser({
     formLimit:"5mb",
     jsonLimit:"5mb",
@@ -25,6 +26,7 @@ app.use(bodyParser({
     enableTypes: ['json', 'form', 'text']
 }));
 
+//接收前台发来的数据
 router.post('/upload',async(ctx,next)=>{
 	//传入base64
 	let imgsrc = ctx.request.body.imgsrc;
@@ -50,6 +52,18 @@ router.post('/upload',async(ctx,next)=>{
     let result;
     result=await write();
     ctx.body=result;
+    //传入上一张图片文件名
+    let fileName=ctx.request.body.filename;
+    //传入第二张图片时将上一张图片删除
+    if(fileName!=undefined){
+        fs.unlink('../images/'+fileName, (err) =>{
+            if(err) throw err;
+            console.log('删除成功！')
+        })
+    }
+    else{
+        console.log('第一次上传')
+    }
 });
 
 app.use(router.routes());

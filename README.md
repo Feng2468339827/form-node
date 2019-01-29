@@ -1,4 +1,4 @@
-# photoUpload-node
+# photoUpload
 ## 自做的上传图片插件，持续更新中...
 #### 1. `npm i`
 #### 2. `cd server`

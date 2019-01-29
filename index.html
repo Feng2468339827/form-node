@@ -8,22 +8,18 @@
 <body>
 	<form class="container" enctype='multipart/form-data' method='post' action='javascript:;'>
 		<h2>选择图片上传</h2>
-		<div class="imgcontainer" onclick='createFileInput()'>
-			<img src="" alt="">
-			<!-- 遮罩层 -->
-			<div class="masklayer hidden">
-				<div class="pregress-container">
-					<span>0%</span>
-					<span>/</span>
-					<span>100%</span>
-					<div class="progress">
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="imgcontainer"></div>
 	</form>
 
 	<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
 	<script src='./js/index.js'></script>
+	<script>
+		//绑定选择器
+		var imgupload = new YFImgUpload(".imgcontainer",{
+			size:2000,
+			drop:true,
+			mask:true
+		});
+	</script>
 </body>
 </html>

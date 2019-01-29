@@ -8,13 +8,13 @@
 	margin-top: 30px;
 	min-width: 200px;
 	min-height:200px;
-	max-width: 800px;
+	max-width: 30%;
 	border-radius: 5px;
 	border:1px solid #bcbcbc;
 	padding:15px;
 	position: relative;
 	cursor: pointer;
-	transition: all 0.25s;
+	transition: border 0.25s;
 	margin-bottom: 50px;
 }
 .imgcontainer:before,

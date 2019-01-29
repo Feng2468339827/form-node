@@ -23,7 +23,7 @@ app.use(bodyParser({
 }));
 
 //接收前台发来的数据
-router.post('/upload',async(ctx,next)=>{
+router.post('/upload',async(ctx, next)=>{
 	//传入base64
 	let imgsrc = ctx.request.body.imgsrc;
 	//传入文件名称
@@ -49,8 +49,9 @@ router.post('/upload',async(ctx,next)=>{
     result=await write();
     ctx.body=result;
     //传入上一张图片文件名
-    let fileName=ctx.request.body.filename;
+    let fileName=ctx.request.body.prevFileName;
     //传入第二张图片时将上一张图片删除
+    console.log(fileName)
     if(fileName!=undefined){
         fs.unlink('../images/'+fileName, (err) =>{
             if(err) throw err;
